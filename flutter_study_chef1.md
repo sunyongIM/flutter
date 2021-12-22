@@ -1,4 +1,4 @@
-> 유튜브 코딩셰프 플러터(flutter) 강좌 순한맛 5~
+> 유튜브 [코딩셰프] 플러터(flutter) 강좌 순한맛 5~8
 
 
 
@@ -45,7 +45,7 @@
 
 
 
-완전 초보용 플러터 강좌 6~7
+완전 초보용 플러터 강좌 6~8
 
 # Flutter 앱 만들기
 
@@ -67,8 +67,6 @@
 
 2. android / ios폴더
    - 각 플랫폼에 맞게 앱을 배포하기 위한 정보
-
-
 
 3. lib
    - main.dart 파일
@@ -102,15 +100,49 @@ class ChefApp extends StatelessWidget {
 }
 ```
 
-- `=>` : fat arrow
+- `=>` - fat arrow
   - 함수를 호출하는 기호
 
-- `runApp(arg)` : argument를 반드시 필요로 하는 플러터의 최상위 함수
+- `runApp(arg)` - argument를 반드시 필요로 하는 플러터의 최상위 함수
   - argument인 ChefApp() 위젯은 Screen layout을 최초로 빌드한다
-- `ChefApp()` 위젯 : 커스텀 위젯, 앱의 layout을 빌드하는 역할만을 하기에 stateless이다
+- `ChefApp()` 위젯 - 커스텀 위젯 클래스, 앱의 layout을 빌드하는 역할만 함 (stateless)
   - 모든 커스텀 위젯은 다른 위젯을 리턴하는 build라는 함수를 가지고 있다
 
 
+
+```dart
+//MaterialApp의 home (자식위젯)에 리턴하는 커스텀 클래스
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('AppBar Title'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Text('Hello'),
+          // 위젯 사이에는 반드시 콤마가 존재해야 함
+            Text('Hello'),
+            Text('Hello')
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+```
+
+- `Scaffold()`  - 앱 화면에 다양한 위젯을 배치하는 비어있는 도화지의 역할
+  - `appBar: AppBar()` - 앱의 상단 바 클래스 (디폴트 파란색)
+    - `title:` - 상단 바의 title
+  - `body:` - 앱의 몸 부분
+    - `Center(child:)` - 가운데로 정렬시켜주는 클래스
+      - `Column(children)` - 위젯들을 세로로 나열해주는 클래스
 
 
 
