@@ -142,6 +142,10 @@
 
 ## 박스 디자인하는 법
 
+
+
+### Container / SizedBox
+
 ```dart
 body: Container(
           width: 50, height: 50, color: Colors.blue, //color

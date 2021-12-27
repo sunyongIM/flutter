@@ -31,7 +31,7 @@ body: Row(
 
 
 
-### 콘솔창과 Devtools
+## 콘솔창과 Devtools
 
 > 콘솔창을 키는 단축키 - alt+4
 >
@@ -43,7 +43,7 @@ Devtools로 전체적인 위젯의 화면을 볼 수 있다. (디버깅기능)
 
 
 
-### 과제
+## 과제
 
 ```dart
 import 'dart:html';
@@ -117,5 +117,182 @@ class MyApp extends StatelessWidget {
   }
 }
 
+```
+
+
+
+
+
+# 쉬운 플러터 6강
+
+
+
+## 커스텀 위젯
+
+> 커스텀 위젯은 class로 만듬 ( class - 변수 함수 보관함)
+>
+> 이미 완성된 위젯 복사해서 class만듬 (ex - StatelessWidget)
+>
+> @override - 중복 발생 시 내꺼먼저 적용 (덮어쓰기)
+>
+> class안에 build라는 함수 만드는 부분 필요
+>
+> return에 반환할 내용 입력
+
+
+
+```dart
+class myApp extends StatelessWidget {
+  const myApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+        body: HiClass(),	//커스텀 위젯
+      ),
+    );
+  }
+}
+
+class HiClass extends StatelessWidget {
+  const HiClass({Key? key}) : super(key: key);
+  //파라메터 정의 부분
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Text('안녕'),
+    );
+  }
+}
+```
+
+### 목적
+
+1. 축약
+2. 재사용
+
+
+
+```dart
+class myApp extends StatelessWidget {
+  const myApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+        body: hi,	//변수
+      ),
+    );
+  }
+}
+
+var hi = SizedBox(
+  child: Text('안녕'),
+);
+```
+
+변수, 함수 문법으로도 축약은 가능하지만
+변하지 않는 UI만 해야한다 (StatelessWidget). - 성능이슈
+
+
+
+## ListView
+
+> column은 스크롤바가 없고 children이 많아지면 불편한 반면
+>
+> ListView는 스크롤바가 생성되고, 스크롤 위치 감시도 가능
+>
+> 메모리 절약기능이 있음 (성능개선)
+
+```dart
+body: ListView(
+    children: [
+        Text('ListView'),
+        Text('ListView'),
+        Text('ListView'),
+    ],
+),
+```
+
+
+
+## 과제
+
+```dart
+import 'dart:html';
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const myApp());
+}
+
+class myApp extends StatelessWidget {
+  const myApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
+        // body: HiClass(),
+        body: ListView(
+          children: [
+            Names(),
+            Names(),
+            Names(),
+          ],
+        ),
+        bottomNavigationBar: BottomIcons(),
+      ),
+
+    );
+  }
+}
+
+class Names extends StatelessWidget {
+  const Names({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30,
+      child: Row(
+        children: [
+          Icon(Icons.person_pin),
+          Text(' 홍길동', style: TextStyle(
+            fontSize: 10,
+            letterSpacing: 1,
+          ),)
+        ],
+      ),
+    );
+  }
+}
+
+class BottomIcons extends StatelessWidget {
+  const BottomIcons({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      color: Colors.white54,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Icon(Icons.call),
+          Icon(Icons.list_alt),
+          Icon(Icons.person_pin_outlined),
+        ],
+      ),
+    );
+  }
+}
 ```
 
