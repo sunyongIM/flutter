@@ -1,4 +1,4 @@
-> 유튜브 [코딩애플] 쉬운 플러터 1~4강	(2021.12.14~2021.12.19)
+> <Youtube> [코딩애플] 쉬운 플러터 1~4강	(2021.12.14~2021.12.19)
 >
 > 1강 : [플러터 기본 위젯 넣는 법 - 코딩애플 온라인 강좌 (codingapple.com)](https://codingapple.com/unit/flutter-basic-layout-widget/?id=19933)
 >

@@ -1,4 +1,4 @@
-> 유튜브 [코딩셰프] 플러터(flutter) 강좌 순한맛 5~8
+> <Youtube> [코딩셰프] 플러터(flutter) 강좌 순한맛 5~8	(2019.10.31~2019.12.03)
 
 
 
@@ -138,11 +138,19 @@ class MyHomePage extends StatelessWidget {
 ```
 
 - `Scaffold()`  - 앱 화면에 다양한 위젯을 배치하는 비어있는 도화지의 역할
-  - `appBar: AppBar()` - 앱의 상단 바 클래스 (디폴트 파란색)
-    - `title:` - 상단 바의 title
-  - `body:` - 앱의 몸 부분
-    - `Center(child:)` - 가운데로 정렬시켜주는 클래스
-      - `Column(children)` - 위젯들을 세로로 나열해주는 클래스
+  
+  - `appBar: AppBar()`
+    
+    > 구조 - `appBar(Scaffold의 argument) : AppBar() 인스턴스`
+    >
+    > > 앱의 상단 바, 디폴트 파란색
+    
+    - `title:` - 상단 바의 title (AppBar 인스턴스의 argument(인수) )
+    
+  - `body:` - (Scaffold의 인수)로서 **앱의 몸 부분을 구현한다**
+    
+    - `Center(child:)` - 가운데로 정렬시켜주는 인스턴스(클래스라고 해도 무관)
+      - `Column(children: [])` - 위젯들을 세로로 나열해주는 클래스
 
 
 
