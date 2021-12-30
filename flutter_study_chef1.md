@@ -2,7 +2,7 @@
 
 
 
-완전 초보용 플러터 강좌 5
+*완전 초보용 플러터 강좌 5*
 
 # Widget
 
@@ -45,7 +45,9 @@
 
 
 
-완전 초보용 플러터 강좌 6~8
+
+
+*완전 초보용 플러터 강좌 6~8*
 
 # Flutter 앱 만들기
 
@@ -151,6 +153,8 @@ class MyHomePage extends StatelessWidget {
     
     - `Center(child:)` - 가운데로 정렬시켜주는 인스턴스(클래스라고 해도 무관)
       - `Column(children: [])` - 위젯들을 세로로 나열해주는 클래스
+
+
 
 
 

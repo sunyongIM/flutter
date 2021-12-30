@@ -4,7 +4,7 @@
 
 
 
-완전 초보용 플러터 강좌 9~11
+*완전 초보용 플러터 강좌 9~11*
 
 # 캐릭터 페이지 디자인
 
@@ -200,7 +200,9 @@ class BBANTOCard extends StatelessWidget {
 
 
 
-완전 초보용 플러터 강좌 12~13
+
+
+*완전 초보용 플러터 강좌 12~13*
 
 # 다트(dart) 언어 핵심정리
 
@@ -343,7 +345,7 @@ void main(){
 
 
 
-플러터 뉴스(Flutter news) 1~2
+*플러터 뉴스(Flutter news) 1~2*
 
 # Null safety
 
