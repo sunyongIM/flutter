@@ -212,7 +212,7 @@ class BBANTOCard extends StatelessWidget {
 >
 > java와 달리 타입 추론기능이 있어, 타입을 작성하지 않아도 된다.
 >
-> **but** - 타입을 작성하지 않으면, 틀린 타입이 대입되어도 complie 에러가 뜨지 않는다.
+> **but** - 타입을 작성하지 않으면, 잘못된 타입이 대입되어도 complie 에러가 뜨지 않는다.
 
 
 

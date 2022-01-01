@@ -146,6 +146,10 @@
 
 ### Container / SizedBox
 
+> child가 없을 경우 Container 위젯은 가능한 넓은 공간을 차지하려 한다
+>
+> child가 있을 경우 Container 위젯은 child의 공간으로 줄어든다
+
 ```dart
 body: Container(
           width: 50, height: 50, color: Colors.blue, //color
