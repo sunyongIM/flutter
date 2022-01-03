@@ -1,4 +1,4 @@
-> <Youtube> [코딩셰프] 플러터(flutter) 강좌 순한맛 19~	(2020.01.07~2020.01.28)
+> <Youtube> [코딩셰프] 플러터(flutter) 강좌 순한맛 19~25	(2020.01.07~2020.03.06)
 
 
 
@@ -236,3 +236,24 @@ class SecondPage extends StatelessWidget {
 }
 ```
 
+
+
+# 멀티페이지 이동기능 구현
+
+>MaterialApp
+>
+>> initialRoute (home과 같이 사용하면 안됨)
+>>
+>> routes
+>
+>
+
+
+
+
+
+Collection
+
+
+
+Generic
