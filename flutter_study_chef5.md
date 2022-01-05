@@ -1,4 +1,4 @@
-> <Youtube> [코딩셰프] 플러터(flutter) 강좌 조금 매운맛 01~	(2020.03.19~2020..)
+> <Youtube> [코딩셰프] 플러터(flutter) 강좌 조금 매운맛 01~07	(2020.03.19~2020.06.06)
 
 
 
@@ -67,6 +67,7 @@ import 'dart:html';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(MyApp());
 
@@ -243,7 +244,9 @@ class _DicePageState extends State<DicePage> {
                         // width: 150.0,
                       ),
                     ),
-                    SizedBox(width: 40.0,),
+                    SizedBox(
+                      width: 40.0,
+                    ),
                     Expanded(
                       child: Image.asset(
                         'dice$diceNum2.png',
@@ -263,6 +266,8 @@ class _DicePageState extends State<DicePage> {
                     diceNum1 = Random().nextInt(6) + 1;
                     diceNum2 = Random().nextInt(6) + 1;
                   });
+                  showToast(
+                      "Left dice : {$diceNum1}, Right dice : {$diceNum2}");
                 },
                 child: Icon(
                   Icons.play_arrow,
@@ -280,5 +285,255 @@ class _DicePageState extends State<DicePage> {
     );
   }
 }
+
+void showToast(String message) {
+  Fluttertoast.showToast(
+      msg: message,
+      fontSize: 20.0,
+      backgroundColor: Colors.grey,
+      textColor: Colors.white,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM);
+}
 ```
+
+
+
+
+
+*플러터(flutter) 강좌 조금 매운맛 06*
+
+# Final과 const
+
+> Final, const - 한번만 할당(초기화)할 수 있다. (재할당X)
+
+Final
+
+> Run-time Constant
+
+- 앱이 실행될 때 초기화
+- Stateless Widget과 비슷한 느낌으로 값을 수정하려면 Rebuilding이 필요함
+
+const
+
+> Compile-time Constance
+
+- 선언과 동시에 초기화 필요 (Run-time 이전에 초기화)
+
+
+
+
+
+*플러터(flutter) 강좌 조금 매운맛 07*
+
+# Refactoring
+
+
+
+## Opacity
+
+> Opacity(불투명도)를 이용한 배치활용
+
+![](md-images/Opacity_Center.jpg)
+
+- 뒤의 로고를 배치하고, `opacity: 0.0` 으로 투명하게 하여 글씨를 가운데 배치
+
+![](md-images/Logos_Opacity_Center.jpg)
+
+```dart
+SizedBox(
+    height: 40.0,
+    child: ButtonTheme(
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xFF334D92),
+            ),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                    Image.asset('images/flogo.png'),
+                    Text(
+                        'Login with Facebook',
+                        style: TextStyle(color: Colors.white, fontSize: 15.0),
+                    ),
+                    Opacity(
+                        opacity: 0.0,
+                        child: Image.asset('images/glogo.png'),
+                    ),
+                ],
+            ),
+            onPressed: () {},
+        ),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+                Radius.circular(4.0),
+            ),
+        ),
+    ),
+),
+```
+
+
+
+## Private
+
+> `_`를 앞에 붙임
+>
+> 같은 파일 안에서만 사용가능
+
+`_buildButton(),`
+
+
+
+
+
+### main.dart
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'login_app/login.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Firebase login app',
+      home: LogIn(),
+    );
+  }
+}
+```
+
+
+
+### login.dart
+
+```dart
+import 'package:firebaselogin/my_button/my_button.dart';
+import 'package:flutter/material.dart';
+
+class LogIn extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Text(
+          'Sign In',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        elevation: 0.2,
+      ),
+      body: _buildButton(),
+    );
+  }
+
+  Widget _buildButton() {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          MyButton(
+            image: Image.asset('images/glogo.png'),
+            text: Text(
+              'Login with Google',
+              style: TextStyle(color: Colors.black87, fontSize: 15.0),
+            ),
+            color: Colors.white,
+            radius: 0.0,
+            onPressed: () {},
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          MyButton(
+            image: Image.asset('images/flogo.png'),
+            text: Text(
+              'Login with Facebook',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15.0,
+              ),
+            ),
+            color: Color(0xFF334D92),
+            radius: 5.0,
+            onPressed: () {},
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          MyButton(
+            image: Icon(Icons.mail_outlined, size: 30.0,),
+            text: Text(
+              'Login with Email',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15.0,
+              ),
+            ),
+            color: Colors.green,
+            radius: 20.0,
+            onPressed: () {},
+          )
+        ],
+      ),
+    );
+  }
+}
+```
+
+
+
+### my_button.dart
+
+```dart
+import 'package:firebaselogin/login_app/login.dart';
+import 'package:flutter/material.dart';
+
+class MyButton extends StatelessWidget {
+  MyButton({this.image, this.text, this.color, this.radius, this.onPressed});
+
+  final Widget image;
+  final Widget text;
+  final Color color;
+  final double radius;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 40.0,
+      child: ElevatedButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            image,
+            text,
+            Opacity(
+              opacity: 0.0,
+              child: image,
+            ),
+          ],
+        ),
+        style: ElevatedButton.styleFrom(
+          primary: color,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(radius))),
+        ),
+        onPressed: onPressed,
+      ),
+    );
+  }
+}
+```
+
+
 
