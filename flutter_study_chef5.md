@@ -309,7 +309,7 @@ void showToast(String message) {
 
 Final
 
-> Run-time Constant
+> Run-time Constance
 
 - 앱이 실행될 때 초기화
 - Stateless Widget과 비슷한 느낌으로 값을 수정하려면 Rebuilding이 필요함
@@ -319,6 +319,7 @@ const
 > Compile-time Constance
 
 - 선언과 동시에 초기화 필요 (Run-time 이전에 초기화)
+- Rebuilding시 무시됨 => **성능향상**
 
 
 
