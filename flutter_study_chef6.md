@@ -1,4 +1,4 @@
-> <Youtube> [코딩셰프] 플러터(flutter) 강좌 조금 매운맛 08~11 (2020.06.18~2020.07.24)
+> <Youtube> [코딩셰프] 플러터(flutter) 강좌 조금 매운맛 08~12 (2020.06.18~2020.08.25)
 
 
 
@@ -115,8 +115,6 @@ Your order is : Ice Americano
 
 
 
-
-
 ### Thread
 
 > Program + (명령) => Process (실행)
@@ -152,6 +150,214 @@ void main() {
   print('2');
 }
 ```
+
+
+
+## 비동기 예시 코드
+
+```dart
+void main() async {
+  methodA();
+  await methodB();
+  await methodC('main');
+  methodD();
+}
+
+methodA(){
+  print('A');
+}
+
+methodB() async {
+  print('B start');
+  await methodC('B');
+  print('B end');
+}
+
+methodC(String from) async {
+  print('C start from $from');
+
+  Future((){
+    print('C running Future from $from');
+  }).then((_){
+    print('C end of Future from $from');
+  });
+
+  print('C end from $from');
+}
+
+methodD(){
+  print('D');
+}
+```
+
+*결과*
+
+```
+A
+B start
+C start from B
+C end from B
+B end
+C start from main
+C end from main
+D
+C running Future from B
+C end of Future from B
+C running Future from main
+C end of Future from main
+```
+
+
+
+- 예시 코드에서 Future 앞에 await을 추가했을 경우 & 결과
+
+```dart
+methodC(String from) async {
+  print('C start from $from');
+
+  await Future((){
+    print('C running Future from $from');
+  }).then((_){
+    print('C end of Future from $from');
+  });
+
+  print('C end from $from');
+}
+
+////////////////////////////////////////////
+A
+B start
+C start from B
+C running Future from B
+C end of Future from B
+C end from B
+B end
+C start from main
+C running Future from main
+C end of Future from main
+C end from main
+D
+```
+
+> 비동기 코드지만 모두 기다렸다가 차례대로 실행되므로,
+> 동기코드와 같은 결과가 나온다
+
+
+
+
+
+# future_ex.dart
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Future',
+      theme: ThemeData(primarySwatch: Colors.cyan),
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  String result = 'no data found';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Future test'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(30.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () {
+                  futureTest();
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Future test',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                result,
+                style: TextStyle(fontSize: 20.0, color: Colors.redAccent),
+              ),
+              Divider(
+                height: 20.0,
+                thickness: 2.0,
+              ),
+              FutureBuilder(
+                  future: myFuture(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return Text(
+                        snapshot.data.toString(),
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.blue,
+                        ),
+                      );
+                    }
+                    return Column(
+                      children: [
+                        CircularProgressIndicator(),
+                        Text('데이터 수신중'),
+                      ],
+                    );
+                  }),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> futureTest() async {
+    await Future.delayed(Duration(seconds: 3)).then((value) {
+      print('Here comes second');
+
+      setState(() {
+        this.result = 'The data is fetched';
+        print(result);
+        print('Here comes third');
+      });
+    });
+    print('Here comes first');
+    print('Here is the last one');
+  }
+
+  Future<String> myFuture() async {
+    await Future.delayed(Duration(seconds: 3));
+    return 'another Future completed';
+  }
+}
+```
+
+
 
 
 
