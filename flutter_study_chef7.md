@@ -243,3 +243,37 @@ class _LoadingState extends State<Loading> {
 
 
 ## Passing data
+
+> Refactoring - 기존의 UI나 프로그램의 기능을 변경하지 않고 내부적인 코드를 수정하는 것
+
+
+
+Refactoring시 기능과 역할에 따라 분류한 코드를, 새로운 dart파일로 코드를 옮긴다.
+이때 data를 주고 받는 방법은 argument와 parameter를 활용하면 된다.
+
+
+
+*플러터(flutter) 강좌 조금 매운맛 16*
+
+## weather app_16
+
+```yaml
+#추가한 api들
+dependencies:
+  geolocator: ^8.0.1
+  #실제 위치(위도+경도)를 알려주는 api
+  http: ^0.13.4
+  #uri를 이용하여 온라인 데이터 연동
+  google_fonts: ^2.2.0
+  flutter_svg: ^1.0.0
+  timer_builder: ^2.0.0
+  #시스템 시간 사용가능
+  intl: ^0.17.0
+  #(DateTime은 dart:core에서 기본제공) 날짜 포멧 설정 - Dateformat
+```
+
+
+
+*앱 화면*
+
+![](md-images/weather_app_making1.jpg)
