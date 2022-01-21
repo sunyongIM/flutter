@@ -1,4 +1,4 @@
-> <Youtube> [코딩셰프] 플러터(flutter) 강좌 조금 매운맛 13~1 (2021.01.29~2021.0.)
+> <Youtube> [코딩셰프] 플러터(flutter) 강좌 조금 매운맛 13~18 (2021.01.29~2021.07.06)
 
 
 
@@ -277,3 +277,49 @@ dependencies:
 *앱 화면*
 
 ![](md-images/weather_app_making1.jpg)
+
+
+
+
+
+*플러터(flutter) 강좌 조금 매운맛 18*
+
+# Key 이해하기
+
+
+
+## 플러터에서의 key
+
+1. 위젯의 State를 보존
+2. 위젯이나 요소들을 유니크하게 식별
+
+
+
+*번외* - swapTiles의 원리
+
+![](md-images/swap_tiles.jpg)
+
+
+
+- Global key
+- Value key
+- Unique key
+- Object key
+- Page storage key
+
+
+
+### Global key
+
+> **전역변수**와 비슷한 역할
+>
+> 외부에서 Global key를 통하여 호출하는 용도로 사용
+> 그렇기에 generic을 사용하여 bind를 해준다
+
+
+
+### Value key
+
+> Flutter는 기본적으로 데이터를 위젯의 타입으로 식별한다
+> Stateful 위젯의 정확한 식별을 위해서는 Key가 필요하다
+> Value key는 value값을 가지는 Stateful 위젯에 사용한다
