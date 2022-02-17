@@ -64,11 +64,66 @@ Positioned(
 
 
 
+## Rich Text
+
+> 서로 다른 디자인의 텍스트를 나열 할 수 있음
+
+
+
 ## TextFormField
 
 > TextField는 TextEditingController의 변수가 필요해서 입력받을 TextField가 많아지면 관리하기 어려움
 >
-> TextFormField는 
+> TextFormField는 Form의 children으로 묶어 관리할 수 있음
+
+
+
+### Validator
+
+> TextFormField의 값의 유효성을 확인 할 수 있고, 경고 메시지를 보여주는 기능도 있음
+
+![](md-images/validation.jpg)
+
+
+
+### Form의 `GlobalKey<FormState>()`
+
+> Form내의 TextFormField의 State를 관리 할 수 있음
+>
+> `currentState`의 멤버변수인 `validator, onSave, onChanged`를 설정한다
+
+
+
+```dart
+  final _formKey = GlobalKey<FormState>();  
+  void _tryValidation() {
+    final isValid = _formKey.currentState!.validate();
+  //validator의 return이 모두 null이면 true
+    if (isValid) {
+      _formKey.currentState!.save();
+    }
+  }
+
+
+TextFormField(
+    key: const ValueKey(1),
+    validator: (value) {
+        if (value!.isEmpty || value.length < 4) {
+            return 'Please enter at least 4 characters';
+            }
+        return null;
+        },
+    onSaved: (value) {
+        userName = value!;
+        },
+  // _formKey.currentState!.save() 실행시 저장할 데이터
+    onChanged: (value) {
+        userName = value;
+        },
+    ),
+```
+
+
 
 
 
@@ -115,3 +170,16 @@ void main() {
 
 
 
+
+
+## Xml to Json
+
+>[[Flutter\] Xml 을 Json으로 바꾸.. : 네이버블로그 (naver.com)](https://blog.naver.com/nam_0510/222122129597)
+
+
+
+## UTF-8 encoding
+
+> [[FlUtTeR\] http 패키지 - 리턴 값의 한글이 깨질때 (tistory.com)](https://freecatz.tistory.com/130)
+>
+> decode의 argument는 `List<int>`이므로 `response.body`가 아닌 `response.bodyBytes `사용
