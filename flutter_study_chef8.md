@@ -90,7 +90,7 @@ Positioned(
 
 > Form내의 TextFormField의 State를 관리 할 수 있음
 >
-> `currentState`의 멤버변수인 `validator, onSave, onChanged`를 설정한다
+> `currentState`의 메소드인 `validator, onSave, onChanged`를 설정한다
 
 
 
@@ -164,7 +164,7 @@ void main() {
 
 # Stream의 개념
 
-> .
+> 지속적으로 들어오는 데이터를 기다렸다가 받아야 할 때 필수적으로 사용되는 방법
 
 ![Stream_example](md-images/Stream_example.jpg)
 
