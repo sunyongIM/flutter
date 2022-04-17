@@ -8,6 +8,16 @@
 
 # 1장 플러터
 
+> 개발자로 반드시 알아야 할 플러터의 네 가지 주요 개념
+>
+> > 플러터는 리액티브다
+> >
+> > 모든 것은 위젯이다
+> >
+> > State 객체는 오래 살아남으며 종종 재사용된다
+> >
+> > 위젯의 제약은 부모가 서술한다
+
 
 
 ## 1.6 다른 모바일 개발 옵션
@@ -47,7 +57,18 @@
 
 
 
+#### 렌더링 엔진
+
+> Rendering engine - 화면상에 텍스트와 이미지를 그려주는 소프트웨어
+>
+> A **rendering engine** is software that draws text and images on the screen.
+> The engine draws structured text from a document (often [HTML](https://developer.mozilla.org/en-US/docs/Glossary/HTML)), and formats it properly based on the given style declarations (often given in [CSS](https://developer.mozilla.org/en-US/docs/Glossary/CSS)). Examples of layout engines: [Blink](https://developer.mozilla.org/en-US/docs/Glossary/Blink), [Gecko](https://developer.mozilla.org/en-US/docs/Glossary/Gecko), EdgeHTML, [WebKit](https://developer.mozilla.org/en-US/docs/Glossary/WebKit).
+
+
+
 ## 1.7 플러터의 장점
+
+
 
 ### 1.7.1 자바스크립트 다리가 없음
 
@@ -156,19 +177,46 @@ Class CustomWidget extends StatelessWidget{
 
 
 - **플러터 위젯은 리액티브**이다
-  - 외부(또는 setState)에서 새 정보를 얻으면 이에 반응하고, 필요하면 플러터가 리빌드를 진행한다.
+  - 외부(또는 setState)에서 새 정보를 얻으면 이에 반응하고, 필요하면 플러터가 리빌드를 진행한다
 - 버튼을 통한 setState 호출 예시
   1. 사용자가 버튼을 누름
   2. Button.onPressed 콜백에서 setState를 호출
   3. Button의 상태가 dirty로 바뀌었으면, 플러터는 이 위젯을 리빌드함
   4. 트리에서 기존 위젯을 새 위젯으로 바꿈
   5. 플러터가 새 트리를 그림
+
+
+
+### 1.10.1 위젯 트리와 레이아웃 조립
+
 - 렌더링의 단계
   1. 애니메이트 - 애니메이션 티커 타이머 시작
   2. 빌드 - 플러터가 위젯 트리를 빌드함
   3. 레이아웃 - 플러터가 트리를 내려갔다가 거슬러 올라오면서 대상 위젯의 레이아웃을 결정함
   4. 조립 - 각 픽셀 준비
   5. 그리기 - 플러터가 위젯을 그림
+
+
+
+### 1.10.2 조립 과정
+
+> 조립 과정은 그리기 과정과 별도이고,
+> 조립 과정과 그리기 과정을 분리함으로 성능을 높일 수 있다
+> (조립된 위젯 재사용 가능)
+
+1. 각 위젯의 레이아웃을 결정하고 다른 위젯과 충돌하지 않음을 확인
+2. 플러터가 위젯을 그릴 준비를 함 (조립 과정)
+3. 플러터가 위젯에 실제 화면상의 좌표를 제공하고, 위젯은 자신이 차지할 실제 픽셀의 수를 알게 됨
+
+
+
+### 1.10.3 화면에 그리기
+
+> 래스터라이징(rasterizing) - 텍스트와 이미지를 프린트 가능한 형태로 전환
+
+4. 엔진이 전체 트리를 그릴 수 있는 뷰로 모은다
+
+5. 운영체제를 통해 화면에 그리도록 요청 (래스터라이징)
 
 
 
