@@ -400,3 +400,211 @@ switch(number){
 
 
 
+### 2.3.3 고급 switch 사용
+
+> switch 문에서 case에 break나 return 문을 사용하지 않으면 자동으로 다음 case를 실행한다
+
+```dart
+int number = 1;
+switch(number){
+    case -1:
+    case -2:
+    case -3:
+	case -4:
+    case -5:
+        print('negative');
+        break;
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        print('positive');
+        break;
+    case 0:
+    default:
+        print('zero!');
+        break;
+}
+```
+
+
+
+### switch 문 탈출
+
+> switch 문의 각 case에 switch를 탈출하는 키워드 (break, return 또는 throw)을 추가해야 한다
+>
+> continue와 레이블로 해당 case 문부터 실행 할 수 있다
+
+```dart
+String animal = 'tiger';
+switch(animal){
+    case 'tiger':
+        print("it's a tiger");
+        continue alsoCat;
+    case 'lion':
+        print("it's a lion");
+        continue alsoCat;
+    ///continue이후 해당 레이블을 찾아옴
+    alsoCat:
+    case 'cat':
+        print("it's a cat");
+        break;
+}
+```
+
+
+
+### 삼항 연산자
+
+> 조건(Boolean) **?** 참일때 반환 옵션 : 거짓일때 반환 옵션
+
+
+
+### 2.3.4 루프
+
+- 표준 for 루프
+
+  - index가 필요한 경우
+
+- for-in 루프
+
+  - index 필요없을 경우
+
+    ```dart
+    List<String> fruits = ['apple', 'banana', 'peach'];
+    for (var fruit in fruits){
+        print(fruit);
+    }
+    ```
+
+    
+
+- forEach 메서드
+
+  > 특징
+  >
+  > > 1. List에서 호출하는 함수 - 새로운 범위를 만들고, forEach에서 접근한 모든 값은 이 블록 밖에서 접근할 수 없다
+  > > 2. 부작용만 제공할 가능성이 있다 - 반환값을 이용할 수 없고, 자료구조를 새롭게 만들지 않고 기존 객체를 변환할 때 유용하다
+
+  - index 필요없을 경우
+
+    ```dart
+    List<String> fruits = ['apple', 'banana', 'peach'];
+    fruits.forEach((fruit)=> print(fruit));
+    ```
+
+    
+
+- while 루프
+
+- do while 루프
+
+
+
+**break과 continue**
+
+> break - 루프 탈출
+>
+> continue - 루프의 다음 차례로 넘어감
+
+
+
+## 2.4 함수
+
+> 함수는 객체이며 Function이라는 형식을 갖는다
+>
+> 함수의 바디에 한 행의 코드가 있을 때는 `=>`를 사용하여 단축해서 표현이 가능하다
+>
+> `=>`은 화살표 함수(arrow function)이라 부르며 return과 같은 역할을 한다
+
+
+
+**고차함수(high-order function)**
+
+- 함수를 인수로 전달하거나 함수에서 함수를 반환하는 언어의 기능
+
+
+
+### 2.4.2 파라미터
+
+> 다트 함수는 
+>
+> > 위치 지정 파라미터 - positional
+> >
+> > 이름 지정 파라미터 - named
+> >
+> > 선택형 위치 지정 파라미터 - optional positional
+> >
+> > 선택형 이름 지정 파라미터 - optional named
+>
+> 등을 지원한다
+
+
+
+**이름 지정 파라미터**
+
+> 이름 지정이란 함수를 호출할 때 인수를 레이블과 쌍으로 제공한다는 의미
+>
+> 중괄호`{}` 로 이름 지정 파라미터를 감싸서 구현
+>
+> @required를 붙이면 필수 파라미터로 지정할 수 있다
+
+```dart
+void example({String exampleString, int exampleInt}){
+    
+}
+```
+
+
+
+**선택형 위치 지정 파라미터**
+
+> 마지막으로 []를 이용해 선택형 위치 지정 파라미터를 정의한다
+>
+> 선택형 위치 지정 파라미터에는 인수를 전달하지 않아도 괜찮다
+
+
+
+### 2.4.3 파라미터 기본값
+
+> 함수 시그니처에 = 연산자를 이용해 파라미터의 기본값을 정의한다
+
+```da
+addSomeNums(int x, int y, [int z = 5]) => x + y + z;
+```
+
+
+
+### 2.4.4 고급 함수 개념
+
+> 프로그램에서 자신만의 기능을 구현하려면, 코드 재사용의 핵심인 함수를 사용해야 한다
+>
+> 고차 함수를 이용해 코드의 추상 계층을 추가하면 이해하기 쉬운 코드를 만들 수 있다
+
+
+
+## 추상화
+
+> 함수를 쪼개서 자신만의 기능을 구현하는 행위를 추상화(abstraction)라 한다
+>
+> 추상화를 활용해 저수준의 명시적 명령어를 구현하며, 이를 작은 함수로 감싸 이용한다
+
+
+
+```dart
+List<int> nums = [1,2,3];
+nums.forEach((number) => print(number + 1));
+///위의 forEach 메서드는 [number을 인수로 갖는 무명 함수(anonymous function)]를 사용했다
+///이 무명 함수는 forEach 실행이 종료되면 사라진다
+```
+
+```dart
+List<int> nums = [1,2,3];
+void addOneAndPrint(int num){
+	print(num+1);
+}
+nums.forEach(addOneAndPrint);
+///위의 forEach는 인수를 함수로 받으므로 고차 함수이다
+```
+
