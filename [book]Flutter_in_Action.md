@@ -802,3 +802,10 @@ class Cat extends Animal{
 
 ## 3.2 위젯 트리와 형식 , State 객체
 
+> 두 가지 형식 외에 더 높은 수준의 형식을 갖는 위젯이 있지만,
+> 거의 모든 위젯은 StatelessWidget이나 StatefulWidget의 형식을 갖는다
+>
+> 마치 브라우저에서 DOM [ Document Object Model ]으로 트리 구조를 구현하듯이
+>
+> 플러터 UI를 개발한다는 것은 수많은 **위젯을 조합**해 **위젯 트리를 완성하는 것**을 의미한다
+
