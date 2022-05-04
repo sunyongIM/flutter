@@ -809,3 +809,50 @@ class Cat extends Animal{
 >
 > 플러터 UI를 개발한다는 것은 수많은 **위젯을 조합**해 **위젯 트리를 완성하는 것**을 의미한다
 
+
+
+### 3.2.2 상태를 갖는 위젯
+
+> 상태를 갖는 모든 위젯은 상태 객체를 갖는다
+
+```dart
+class MyHomePage extends StatefulWidget {	//<= StatefulWidget을 상속받는다
+    @override	//<= 슈퍼클래스의 메서드 createState를 오버라이드한다
+    _MyHomePageState createState() => _MyHomePageState();
+//모든 StatefulWidget은 State객체를 반환하는 createState 메서드를 반드시 정의해야한다
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+    @override
+    Widget build(BuildContext context) {
+        
+    }
+}
+```
+
+> 모든 위젯 클래스는 build 메서드를 갖는다고 했지만, StatefulWidget 클래스는 build 메서드를 포함하지 않는다. 대신 모든 StatefulWidget은 상태 객체(State<`StatefulWidget 클래스명`>)를 포함한다
+
+
+
+**다트의 비공개(private) 값은 언더바(`_`)로 시작한다**
+
+
+
+### 3.2.3 setState
+
+> setState는 build, createState 다음으로 중요한 메서드이다
+>
+> 이 메서드는 객체의 상태와 관련이 있고 rebuild에 직접적인 영향을 끼친다
+>
+> **setState는 비동기 코드를 실행할 수 없다!!**
+> 따라서 setState를 실행하기 전에 모든 비동기 작업을 완료해야 한다
+
+
+
+### 3.2.4 initState
+
+> 상태 객체는 위젯이 트리에 마운트되면 호출되는 initState 메서드도 포함한다
+>
+> 플러터가 화면에 위젯을 그리기 전에 필요한 모든 초기화를 State.initState에서 수행한다
+>
+> 
